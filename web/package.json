@@ -1,0 +1,16 @@
+{
+  "name": "swemed-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p . && node scripts/copy-static.mjs",
+    "watch": "tsc -p . --watch",
+    "dev": "node scripts/dev-server.mjs",
+    "typecheck": "tsc -p . --noEmit",
+    "test": "node --test \"test/**/*.test.ts\""
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}
