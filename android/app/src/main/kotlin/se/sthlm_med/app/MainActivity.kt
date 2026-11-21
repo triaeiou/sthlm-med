@@ -1,4 +1,4 @@
-package se.swemed.app
+package se.sthlm_med.app
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -151,7 +151,7 @@ class MainActivity : ComponentActivity() {
         view.webChromeClient = WebChromeClient()
         /* Typing in the find bar keeps the shell above the keyboard (layout_shell()). */
         view.onFocusChangeListener = View.OnFocusChangeListener { _, _ -> view.post { layout_shell() } }
-        WebViewCompat.addWebMessageListener(view, "swemed", setOf("https://${WebViewAssetLoader.DEFAULT_DOMAIN}"), bridge)
+        WebViewCompat.addWebMessageListener(view, "sthlm_med", setOf("https://${WebViewAssetLoader.DEFAULT_DOMAIN}"), bridge)
         return view
     }
 

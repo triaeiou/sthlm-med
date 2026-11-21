@@ -7,7 +7,7 @@ export function build_injection_script(css: string): string {
   return `(${page_add_css.toString()})(${JSON.stringify(css)})`
 }
 
-/** Runs in a site's page: add [css] in a <style id="swemed-css">, and keep it there. Self-contained (see above). */
+/** Runs in a site's page: add [css] in a <style id="sthlm-med-css">, and keep it there. Self-contained (see above). */
 export function page_add_css(css: string): void {
   /*
    * At document start there is no <head> yet, so the style goes under <html> first. Any change to the document then
@@ -15,7 +15,7 @@ export function page_add_css(css: string): void {
    * the style, as single-page apps do.
    */
   const style = document.createElement('style')
-  style.id = 'swemed-css'
+  style.id = 'sthlm-med-css'
   style.textContent = css
   /** Put the style in <head>, or in <html> before there is one, unless it is there. */
   const place = () => {

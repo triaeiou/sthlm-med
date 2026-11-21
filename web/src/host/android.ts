@@ -1,7 +1,7 @@
 import type { Host, HostEvent, HostSite, ShellMode } from './host.ts'
 
 /**
- * The Android host: messages to and from the app (android/, ShellBridge.kt) over the "swemed" channel, which the app
+ * The Android host: messages to and from the app (android/, ShellBridge.kt) over the "sthlm_med" channel, which the app
  * adds to this page only, before its scripts run. A request is {id, method, params}; its reply {id, result} or
  * {id, error}; an event {event, params}.
  */
@@ -13,7 +13,7 @@ export interface Channel {
 declare global {
   interface Window {
     /** The Android app's message channel; undefined when the page runs elsewhere (a browser). */
-    swemed?: Channel
+    sthlm_med?: Channel
   }
 }
 

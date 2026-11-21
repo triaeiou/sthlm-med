@@ -9,7 +9,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SweMed">
+        android:theme="@style/Theme.App">
         <!--
           Rotation and keyboards do not recreate the activity, which would reload every site; a change of theme does, so
           the pages follow dark mode.

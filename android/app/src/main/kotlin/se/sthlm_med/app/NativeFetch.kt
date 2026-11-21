@@ -1,4 +1,4 @@
-package se.swemed.app
+package se.sthlm_med.app
 
 import java.io.IOException
 import java.net.HttpURLConnection

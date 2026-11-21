@@ -1,4 +1,4 @@
-// The Android host of SweMed: an activity with one WebView per site and the app's own page (../web) for the toolbar
+// The Android host of sthlm-med: an activity with one WebView per site and the app's own page (../web) for the toolbar
 // and views. See ../README.md.
 pluginManagement {
     repositories {
@@ -16,5 +16,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "swemed"
+rootProject.name = "sthlm-med"
 include(":app")

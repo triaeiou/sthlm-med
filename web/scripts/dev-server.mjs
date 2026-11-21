@@ -5,6 +5,7 @@ import { readFile } from 'node:fs/promises'
 import { createServer } from 'node:http'
 import { extname, join, normalize } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { read_index_html } from './index-html.mjs'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
 const port = Number(process.env.PORT ?? 5173)
@@ -25,7 +26,7 @@ createServer(async (request, response) => {
   // static/ first (page, styles, icons), then dist/ (compiled scripts), as the Android build merges them the same way.
   for (const dir of ['static', 'dist']) {
     try {
-      const body = await readFile(join(root, dir, path))
+      const body = path === '/index.html' ? read_index_html() : await readFile(join(root, dir, path))
       response.writeHead(200, { 'content-type': types[extname(path)] ?? 'application/octet-stream', 'cache-control': 'no-store' })
       return response.end(body)
     } catch {
@@ -33,7 +34,7 @@ createServer(async (request, response) => {
     }
   }
   response.writeHead(404).end('Not found')
-}).listen(port, '127.0.0.1', () => console.log(`SweMed dev: http://localhost:${port}/`))
+}).listen(port, '127.0.0.1', () => console.log(`sthlm-med dev: http://localhost:${port}/`))
 
 /** Fetch [target] server side and pass its answer on: the browser cannot read Belport itself (no CORS headers). */
 async function proxy(target, response) {
@@ -41,7 +42,7 @@ async function proxy(target, response) {
   if (!target || !/^https?:\/\//.test(target)) return response.writeHead(400).end('url must be http(s)')
   // A phone browser's user agent, as some sites serve other markup to unknown clients; 502 when the site is unreachable.
   try {
-    const upstream = await fetch(target, { headers: { 'user-agent': 'Mozilla/5.0 (Linux; Android 14) SweMed-dev' } })
+    const upstream = await fetch(target, { headers: { 'user-agent': 'Mozilla/5.0 (Linux; Android 14) sthlm-med-dev' } })
     response.writeHead(upstream.status, { 'content-type': upstream.headers.get('content-type') ?? 'text/plain' })
     response.end(Buffer.from(await upstream.arrayBuffer()))
   } catch (error) {

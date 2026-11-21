@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SweMed</string>
+    <string name="app_name">sthlm-med</string>
     <string name="webview_outdated">Android System WebView är för gammal. Uppdatera den i Play Butik och starta appen igen.</string>
     <string name="no_app">Ingen app kan öppna länken.</string>
 </resources>

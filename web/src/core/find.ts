@@ -99,15 +99,15 @@ export function page_find(find: typeof find_matches, args: FindArgs): FindResult
    * Names this leaves in the page: the last find on window (so next and previous continue from the current match), and
    * the CSS highlights. With nothing to find (the bar closed, an empty query, a view not there yet), they are removed.
    */
-  const ALL = 'swemed-find'
-  const CURRENT = 'swemed-find-current'
+  const ALL = 'sthlm-med-find'
+  const CURRENT = 'sthlm-med-find-current'
   const COLLAPSED = 'details:not([open]), [hidden="until-found"]'
-  const state = window as unknown as { __swemed_find?: { source: string; index: number } }
+  const state = window as unknown as { __sthlm_med_find?: { source: string; index: number } }
   const root = args.root ? document.querySelector(args.root) : document.body
   if (!args.source || !root) {
     CSS.highlights.delete(ALL)
     CSS.highlights.delete(CURRENT)
-    delete state.__swemed_find
+    delete state.__sthlm_med_find
     return { count: 0, index: -1, capped: false }
   }
 
@@ -156,7 +156,7 @@ export function page_find(find: typeof find_matches, args: FindArgs): FindResult
    * Which match is current. The same query as last time moves from the last current match by [step], wrapping around
    * at either end; a new query starts where the user is reading: the first match in view or below it.
    */
-  const previous = state.__swemed_find
+  const previous = state.__sthlm_med_find
   let index = -1
   if (ranges.length && previous?.source === args.source && previous.index >= 0) {
     index = (previous.index + (args.step ?? 0) + ranges.length) % ranges.length
@@ -168,16 +168,16 @@ export function page_find(find: typeof find_matches, args: FindArgs): FindResult
     })
     index = Math.max(0, first_in_view)
   }
-  state.__swemed_find = { source: args.source, index }
+  state.__sthlm_med_find = { source: args.source, index }
 
   /*
    * Highlight with the CSS Custom Highlight API: it paints ranges without changing the page's DOM, so the site's
    * scripts and layout are not disturbed, and clearing is just deleting the highlight. The style for it is added once.
    */
   const current = ranges[index]
-  if (!document.getElementById('swemed-find-style')) {
+  if (!document.getElementById('sthlm-med-find-style')) {
     const style = document.createElement('style')
-    style.id = 'swemed-find-style'
+    style.id = 'sthlm-med-find-style'
     style.textContent = `::highlight(${ALL}) { background-color: #ffe066; color: #000; } ::highlight(${CURRENT}) { background-color: #ff8c1a; color: #000; }`
     document.head.appendChild(style)
   }

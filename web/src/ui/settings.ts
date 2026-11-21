@@ -20,6 +20,7 @@ export function render_settings(config: AppConfig, actions: SettingsActions): HT
    * never interrupted. Nothing reaches the app until Spara.
    */
   let draft = structuredClone(config)
+  const version = document.querySelector<HTMLMetaElement>('meta[name="app-version"]')?.content
   const root = h('section', { class: 'view settings' })
   // Kept across redraws, so a message stays visible after one.
   const status = h('p', { class: 'status', role: 'status' })
@@ -30,7 +31,7 @@ export function render_settings(config: AppConfig, actions: SettingsActions): HT
     const focused_id = document.activeElement?.id
     root.replaceChildren(
       h('header', { class: 'view-header' },
-        h('h1', null, 'Inställningar'),
+        h('h1', null, 'Inställningar', version ? h('small', { class: 'app-version' }, ` v${version}`) : null),
         h('button', { class: 'icon-button', type: 'button', title: 'Stäng', onclick: actions.close }, icon('close'))),
       h('div', { class: 'view-body' },
         // Only sites that are shown can be the one the app starts on.

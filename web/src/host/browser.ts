@@ -1,7 +1,7 @@
 import { h } from '../ui/dom.ts'
 import type { Host, HostSite } from './host.ts'
 
-const CONFIG_KEY = 'swemed.config'
+const CONFIG_KEY = 'sthlm-med.config'
 
 /**
  * The browser host, for working on the app in a desktop browser (npm run dev). The sites refuse to be framed
@@ -45,7 +45,7 @@ export class BrowserHost implements Host {
 
   /** A named window: the site reuses its own tab rather than opening a new one each time. */
   navigate_site(id: string, url: string): void {
-    window.open(url, `swemed-${id}`)
+    window.open(url, `sthlm-med-${id}`)
   }
 
   /** Another origin's tab cannot be scripted from here; the find bar then shows that it found nothing. */

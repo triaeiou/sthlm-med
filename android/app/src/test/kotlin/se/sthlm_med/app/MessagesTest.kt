@@ -1,4 +1,4 @@
-package se.swemed.app
+package se.sthlm_med.app
 
 import org.json.JSONObject
 import org.junit.Assert.assertEquals

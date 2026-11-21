@@ -2,5 +2,5 @@
 <resources>
     <!-- The toolbar's colour (the bar colour in web/static/style.css), behind the system bars. -->
     <color name="background">#FFFFFF</color>
-    <color name="ic_launcher_background">#0B6FB8</color>
+    <color name="ic_launcher_background">#000000</color>
 </resources>

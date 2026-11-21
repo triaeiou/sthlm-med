@@ -3,7 +3,7 @@ import { h, icon } from './dom.ts'
 
 export const FIND_HEIGHT = 52
 const DEBOUNCE_MS = 150
-const REGEX_KEY = 'swemed.find.regex'
+const REGEX_KEY = 'sthlm-med.find.regex'
 
 export interface FindBarActions {
   /** Find in whatever is searched now: the active site, or the view open. */

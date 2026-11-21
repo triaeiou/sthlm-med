@@ -3,15 +3,15 @@ plugins {
 }
 
 android {
-    namespace = "se.swemed.app"
+    namespace = "se.sthlm_med.app"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "se.swemed.app"
+        applicationId = "se.sthlm_med.app"
         minSdk = 26
         targetSdk = 36
         versionCode = 1
-        versionName = "0.1.0"
+        versionName = "0.5.0"
     }
 
     /*
@@ -58,11 +58,16 @@ dependencies {
 val webDir: File = rootProject.file("../web")
 
 val buildWeb = tasks.register<Exec>("buildWeb") {
+    val app_version = android.defaultConfig.versionName.orEmpty()
     description = "Compiles the web app in ../web (npm run build)."
     workingDir = webDir
+    environment("STHLM_MED_VERSION", app_version)
     commandLine(if (System.getProperty("os.name").startsWith("Windows")) "npm.cmd" else "npm", "run", "build")
+    inputs.property("app_version", app_version)
     inputs.dir(webDir.resolve("src"))
     inputs.dir(webDir.resolve("static"))
+    inputs.dir(webDir.resolve("scripts"))
+    inputs.file(webDir.resolve("package.json"))
     inputs.file(webDir.resolve("tsconfig.json"))
     outputs.dir(webDir.resolve("dist"))
 }
